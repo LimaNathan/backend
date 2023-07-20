@@ -6,14 +6,9 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = "file:./dev.sqlite"
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
-
-// datasource db {
-//   provider = "postgresql"
-//   url      = env("DATABASE_URL")
-// }
 
 model Category {
   id     Int     @id @default(autoincrement())
