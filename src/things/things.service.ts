@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
-import { PrismaService } from 'src/common/prisma_service/prisma.service';
+import { PrismaService } from 'src/common/prisma/prisma.service';
 
 @Injectable()
 export class ThingsService {
@@ -22,12 +22,7 @@ export class ThingsService {
   }
 
   findAll() {
-    return this.prisma.thing.findMany({
-      select: {
-        category: true,
-        categoryId: false,
-      },
-    });
+    return this.prisma.thing.findMany();
   }
 
   findOne(id: number) {

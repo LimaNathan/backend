@@ -9,10 +9,9 @@ import {
 } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { CategoriesService } from './categories.service';
-
 @Controller('categories')
 export class CategoriesController {
-  constructor(private readonly categoriesService: CategoriesService) {}
+  constructor(private readonly categoriesService: CategoriesService) { }
 
   @Post()
   create(@Body() createCategoryDto: Prisma.CategoryCreateInput) {

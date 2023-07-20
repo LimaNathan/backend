@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
-import { PrismaService } from 'src/common/prisma_service/prisma.service';
+import { PrismaService } from 'src/common/prisma/prisma.service';
 
 @Injectable()
 export class CategoriesService {
@@ -13,7 +13,7 @@ export class CategoriesService {
   }
 
   update(id: number, updateCategoryDto: Prisma.CategoryUpdateInput) {
-    return this.prisma.category.create({
+    return this.prisma.category.update({
       data: updateCategoryDto,
       where: {
         id: id,
@@ -22,7 +22,7 @@ export class CategoriesService {
   }
 
   findAll() {
-    return this.prisma.category.findMany;
+    return this.prisma.category.findMany();
   }
 
   findOne(id: number) {
