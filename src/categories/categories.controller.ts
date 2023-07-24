@@ -6,18 +6,21 @@ import {
   Param,
   Patch,
   Post,
+  UseGuards,
 } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
+import { AuthGuard } from 'src/auth/guards/auth.guard';
 import { CategoriesService } from './categories.service';
+
 @Controller('categories')
 export class CategoriesController {
-  constructor(private readonly categoriesService: CategoriesService) { }
+  constructor(private readonly categoriesService: CategoriesService) {}
 
   @Post()
   create(@Body() createCategoryDto: Prisma.CategoryCreateInput) {
     return this.categoriesService.create(createCategoryDto);
   }
-
+  @UseGuards(AuthGuard)
   @Get()
   findAll() {
     return this.categoriesService.findAll();
