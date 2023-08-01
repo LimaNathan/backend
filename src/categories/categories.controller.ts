@@ -3,9 +3,9 @@ import {
   Controller,
   Delete,
   Get,
-  Param,
   Patch,
   Post,
+  Query,
   UseGuards,
 } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
@@ -26,21 +26,22 @@ export class CategoriesController {
     return this.categoriesService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
+  @Get()
+  findOne(@Query('id') id: string) {
     return this.categoriesService.findOne(+id);
   }
 
-  @Patch(':id')
+  @Patch()
   update(
-    @Param('id') id: string,
+    @Query('id') id: string,
+
     @Body() updateCategoryDto: Prisma.CategoryUpdateInput,
   ) {
     return this.categoriesService.update(+id, updateCategoryDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
+  @Delete()
+  remove(@Query('id') id: string) {
     return this.categoriesService.remove(+id);
   }
 }

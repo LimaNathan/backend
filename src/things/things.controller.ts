@@ -1,16 +1,16 @@
 import {
-  Controller,
-  Get,
-  Post,
   Body,
-  Patch,
-  Param,
+  Controller,
   Delete,
+  Get,
+  Patch,
+  Post,
+  Query,
   UseGuards,
 } from '@nestjs/common';
-import { ThingsService } from './things.service';
 import { Prisma } from '@prisma/client';
 import { AuthGuard } from 'src/auth/guards/auth.guard';
+import { ThingsService } from './things.service';
 @UseGuards(AuthGuard)
 @Controller('things')
 export class ThingsController {
@@ -26,21 +26,21 @@ export class ThingsController {
     return this.thingsService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
+  @Get()
+  findOne(@Query('id') id: string) {
     return this.thingsService.findOne(+id);
   }
 
-  @Patch(':id')
+  @Patch()
   update(
-    @Param('id') id: string,
+    @Query('id') id: string,
     @Body() updateThingDto: Prisma.ThingUpdateInput,
   ) {
     return this.thingsService.update(+id, updateThingDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
+  @Delete()
+  remove(@Query('id') id: string) {
     return this.thingsService.remove(+id);
   }
 }
