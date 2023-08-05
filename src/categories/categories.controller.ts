@@ -32,7 +32,7 @@ export class CategoriesController {
   @Patch()
   update(
     @Query('id') id: string,
-    @Body() updateCategoryDto: Prisma.CategoryUpdateInput,
+    @Body() updateCategoryDto: Prisma.CategoryUpdateInput
   ) {
     return this.categoriesService.update(+id, updateCategoryDto);
   }
